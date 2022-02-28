@@ -1,0 +1,2 @@
+feast[redis]==0.16.0
+feast-postgres==0.2.4

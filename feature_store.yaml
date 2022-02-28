@@ -1,0 +1,28 @@
+project: buildcode_repo
+provider: local                      # This defines where the raw data exists
+
+# Where we will store our feature metadata
+# Contains information about our feature repository, such as data sources, feature views, etc.
+registry:
+    registry_store_type: feast_postgres.PostgreSQLRegistryStore
+    path: feast_registry            # This will become the table name for the registry
+    host: localhost
+    port: 5432                      # Optional, default is 5432
+    database: postgres
+    db_schema: my_schema
+    user: admin
+    password: admin                  # FIXME: Change this to a secure password
+
+offline_store:
+    type: feast_postgres.PostgreSQLOfflineStore
+    host: localhost
+    port: 5432
+    database: postgres
+    db_schema: my_schema
+    user: admin
+    password: admin
+
+# Stores the (latest) features for defined entities (users, projects, etc.) to be used for online inference.
+online_store:
+  type: redis
+  connection_string: "localhost:6379,password=redis"
